@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Patient, Prediction
+from .models import Patient, Prediction, Doctor
 
 class PatientSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,4 +9,9 @@ class PatientSerializer(serializers.ModelSerializer):
 class PredictionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Prediction
+        fields = '__all__'
+
+class DoctorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Doctor
         fields = '__all__'

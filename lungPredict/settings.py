@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-n&p+uij(f2@hm=*0tk@!=9gl=5x!=*se-d4r!j92$46a+ks#z1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.15.33','*']
 
 
 # Application definition
@@ -38,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     
     # Tu app personalizada
     'applung',
@@ -51,6 +53,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+]
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+    'http://192.168.15.2:4200'
+]
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'authorization',
 ]
 
 ROOT_URLCONF = 'lungPredict.urls'
@@ -125,3 +141,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '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')

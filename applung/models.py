@@ -18,10 +18,22 @@ class Patient(models.Model):
     def __str__(self):
         return f"{self.name} {self.last_name} - {self.identification}"
 
+class Doctor(models.Model):
+    id = models.AutoField(primary_key=True)  # Campo ID autoincremental
+    first_name = models.CharField(max_length=70)  # Nombre del médico
+    last_name = models.CharField(max_length=70)  # Apellido del médico
+    email = models.EmailField(unique=True)  # Correo del médico (debe ser único)
+    password = models.CharField(max_length=128)  # Contraseña del médico
+
+    def __str__(self):
+        return f"Dr. {self.first_name} {self.last_name}"
+
 class Prediction(models.Model):
     id = models.AutoField(primary_key=True)  # Campo ID autoincremental
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)  # Relación con Patient
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE)  # Relación con Doctor
     class_predict = models.CharField(max_length=200, null=True, blank=True)  # Clase de predicción (puede estar vacía)
+    prediagnostic_report = models.TextField(null=True, blank=True)  # Informe de prediagnóstico con IA
 
     def __str__(self):
-        return f"Prediction for {self.patient.name} {self.patient.last_name}: {self.class_predict or 'Pending'}"
+        return f"Prediction for {self.patient.name} {self.patient.last_name} by {self.doctor.first_name} {self.doctor.last_name}: {self.class_predict or 'Pending'}"
