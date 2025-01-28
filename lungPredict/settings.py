@@ -142,5 +142,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', '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')
+## Aqui se pone lo del API
