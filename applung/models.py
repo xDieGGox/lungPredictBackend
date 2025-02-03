@@ -37,3 +37,15 @@ class Prediction(models.Model):
 
     def __str__(self):
         return f"Prediction for {self.patient.name} {self.patient.last_name} by {self.doctor.first_name} {self.doctor.last_name}: {self.class_predict or 'Pending'}"
+    
+
+
+class PatientImageReport(models.Model):
+    id = models.AutoField(primary_key=True)  # Campo ID autoincremental
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)  # Relación con Patient
+    image_1 = models.TextField(null=True, blank=True)  # Imagen en base64 (puede ser nula)
+    image_2 = models.TextField(null=True, blank=True)  # Imagen en base64 (puede ser nula)
+    report = models.TextField(null=True, blank=True)  # Reporte basado en las imágenes
+
+    def __str__(self):
+        return f"Image Report for {self.patient.name} {self.patient.last_name}"

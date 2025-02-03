@@ -1,5 +1,5 @@
 from django.contrib import admin
-from applung.models import Patient,Prediction,Doctor
+from applung.models import Patient,Prediction,Doctor, PatientImageReport
 
 # Register your models here.
 @admin.register(Doctor)
@@ -13,3 +13,8 @@ class PatientAdmin(admin.ModelAdmin):
 @admin.register(Prediction)
 class PredictionAdmin(admin.ModelAdmin):
     list_display = ('id', 'patient', 'class_predict')
+
+
+@admin.register(PatientImageReport)
+class PatientImageReportAdmin(admin.ModelAdmin):
+    list_display = ('id', 'patient', 'image_1','image_2','report')

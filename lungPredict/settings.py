@@ -143,3 +143,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ## Aqui se pone lo del API
+OPENAI_API_KEY = 'llave'
